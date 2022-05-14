@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-const server = "http://localhost:5000";
+// const server = "http://localhost:5000";
+const server = "https://meme-friend.herokuapp.com";
 
 export default function App() {
   

@@ -16,6 +16,10 @@ app.get('/test', (req, res) => {
   res.json({message: 'this workings~!'})
 })
 
+app.get('/', (req, res) => {
+  res.send('hello to memeing friends~');
+})
+
 
 app.listen(port, () => {
   console.log(`Starting the server at port~ ${port}`);
