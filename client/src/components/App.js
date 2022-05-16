@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPooStorm} from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
 import Display from './Display';
 import Comments from './Comments';
 
@@ -59,6 +60,19 @@ export default function App() {
     // window.scrollTo(0, 115);
   }
 
+  const sendText = () => {
+    fetch(`${server}/send-text/${recipient}/?txtMsg=${currData.link}`)
+      .then((res) => {
+        res.status === 200 
+        ? swal("Sent!", "Text message sent", "success") 
+        : swal({
+          title: "Oh no, something went wrong",
+          text: "Please check that you entered a valid phone number",
+          icon: "warning",
+        });
+      })
+  }
+
 
   return (
     <>
@@ -74,7 +88,7 @@ export default function App() {
             ref={inputRef}
             onChange={handleOnChange}
           />
-          <button className='send-to' onClick={() => {}}>Send To Friend</button>
+          <button className='send-to' onClick={sendText}>Send To Friend</button>
         </div>
         <div className='paginate'>
           <button className='prev-button' onClick={prevPage}>
